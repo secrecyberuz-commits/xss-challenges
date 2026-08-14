@@ -1,2 +1,2 @@
-## Baby XSS 01
-# Zaiflik turi: Reflected XSS
+# Baby XSS 01
+## Zaiflik turi: Reflected XSS
