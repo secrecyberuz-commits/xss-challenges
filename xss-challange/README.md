@@ -134,12 +134,11 @@ Challangeni bajarish uchun DevTools consolega payload kirgizildi:
 ![XSS Challange](./images/010-xss.png)
 
 # Reining the Web by Whitelisting
-CSP quyidagicha sozlangan:
+Saytda CSP ishlatilgan:
 ```header("Content-Security-Policy: default-src 'self'; style-src 'unsafe-inline'");```
-Sahifada same-origin JSONP endpoint ham bor:
+Bundan tashqari, JSONP endpoint bor:
 ```<script src="csp01-jsonp.php?callback=callback"></script>```
-CSP faqat same-origin scriptlarga ruxsat beradi. Ammo csp01-jsonp.php dagi callback parametrini nazorat qiladi.
-Shu uchun same-origin JSONP endpoint orqali JavaScript bajarildi.
+callback parametrini o'zgartirib CSP bypass qilindi.
 
 Payload:
 ```</h1><script src="/challenges/csp01-jsonp.php?callback=alert(document.domain)"></script><h1>```
