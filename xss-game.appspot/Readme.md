@@ -149,4 +149,8 @@ script yuuklandi xss.js file ichidagi alert() bajarildi.
 ![XSS Challanges](./images/12-xss.png)
 
 
+# THE END 
+![XSS Challanges](./images/13-xss.png)
+
+
 
