@@ -42,7 +42,7 @@ Frends bosilganda payload ishga tushadi.
 
 ![XSS Challange](./images/004-xss.png)
 
-# Baby XSS 03
+# Baby XSS 04
 ## Zaiflik turi: Reflected XSS
 
 Bu qismda filterdan foydalanilgan 
