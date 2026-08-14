@@ -28,12 +28,12 @@ Bu yerda `posts[i].message` foydalanuvchi tomonidan boshqariladi va `innerHTML` 
 
 Avval ushbu payload sinab ko'rildi: 
 ``` <script>alert("XSS")</script> ```
-<script> ishlamagani sababli onerror event handleridan foydalanildi:
+`<script> ishlamagani sababli onerror event handleridan foydalanildi:`
 ``` <img src=x onerror=alert()> ```
 
 ![XSS Challanges](./images/02-xss.png)
 
-Payload yuborilgandan keyin post saqlandi, page ga qayta kirganda "alert()" chiqdi.
+Payload yuborilgandan keyin post saqlandi, page ga qayta kirganda `alert()` chiqdi.
 
 # Level 3 
 
