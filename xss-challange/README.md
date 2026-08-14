@@ -2,6 +2,7 @@
 ## Zaiflik turi: Reflected XSS
 
 Bu qismda `echo $_GET["payload"];` payload parametri hech qanday filterdan o'tkazilmasdan HTML ichiga chiqarilyapti.
+
 Payload:
 ```<script>alert('XSS')</script>```
 
