@@ -1,4 +1,4 @@
-# Level 1 – Hello, World of XSS
+# Level 1
 
 ## Zaiflik turi: Reflected XSS
 
@@ -107,7 +107,7 @@ payload ushbu ko'rinishda qo'shiladi:
 
 # Level 6
 
-## Zaiflik turi: 
+## Zaiflik turi: DOM-based XSS
 
 getGadgetName() funksiyasida URL dagi # belgisidan keyingi qiymat olinayotgani aniqlandi:
 ```
