@@ -54,7 +54,7 @@ Payload:
 
 Ushbu payload ishlashi kerak edi lekin web site kodida kamchiliklar borligi sababli ishlamadi.
 PHP xatosi: 
-`TEST` payload yuborilgandaham natija chiqmadi.
+`hello` payload yuborilgandaham natija chiqmadi.
 ```Warning: preg_replace(): No ending delimiter '/' found```
 
 ![XSS Challange](./images/005-xss.png)
