@@ -128,7 +128,7 @@ Source code'da `$escaped` o'zidan foydalanilgan:
 ```$escaped = preg_replace("/<script>/i", "", $escaped);```
 Bu `Undefined variable $escaped` xatoligini chiqaradi.
 
-Challangeni bajarish uchun DevTools console dan foydalanildi.
+Challangeni bajarish uchun DevTools consolega payload kirgizildi:
 ```alert(document.domain)```
 
 ![XSS Challange](./images/010-xss.png)
