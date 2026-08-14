@@ -5,7 +5,6 @@ Bu qismda
 ```echo $_GET["payload"];``` payload parametri hech qanday filterdan o'tkazilmasdan HTML ichiga chiqarilyapti.
 
 Payload:
-
 ```<script>alert('XSS')</script>```
 
 ![XSS Challange](./images/001-xss.png)
@@ -43,4 +42,17 @@ Frends bosilganda payload ishga tushadi.
 
 ![XSS Challange](./images/004-xss.png)
 
+# Baby XSS 03
+## Zaiflik turi: Reflected XSS
 
+Bu qismda filterdan foydalanilgan 
+```preg_replace("/[`<>ux]\\/", "", $_GET['payload']);```
+Filter `/[`<>ux`]\\/` bularni bloklaydi. Lekin `$,)(,}{,''` bulardan foydalansa bo'ladi.
+
+Payload:
+```${alert('XSS')}```
+
+Ushbu payload ishlashi kerak edi lekin web site kodida kamchiliklar borligi sababli ishlamadi.
+PHP xatosi: 
+`TEST` payload yuborilgandaham natija chiqmadi.
+```Warning: preg_replace(): No ending delimiter '/' found```
